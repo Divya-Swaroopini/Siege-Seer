@@ -39,57 +39,28 @@
                     </tr>
                 </thead>
                 <tbody style="color: rgb(214,214,214);">
-                    <tr style="width: 800px;height: 60px;border-color: rgb(0,0,0);">
-                        <td style="border-color: rgb(0,0,0);"><a id="player0">View Stats</a></td>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player1">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player2">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player3">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player4">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player4">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player5">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player6">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player7">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                    <tr style="width: 800px;height: 60px;">
-                        <td style="border-color: rgb(0,0,0);"><a id="player8">View Stats</a></td>
-                        <td style="border-color: rgb(0,0,0);">Cell 1</td>
-                        <td style="border-color: rgb(0,0,0);">Cell 2</td>
-                    </tr>
-                </tbody>
+                    <?php
+                        include("connection.php");
+                        if(isset($_SESSION['Role_them'])) {
+                            $id = $_SESSION['Role_them'];
+                            $sql = "CALL best_matches('".$id."')";
+                            $result = $conn -> query($sql);
+                            for($i=0; $i < 10; $i++) {
+                                $row = $result -> fetch_assoc();
+                                echo
+                                '<tr style="width: 800px;height : 60px;border-color: rgb(0,0,0);">
+                                <td style="border-color: rgb(0,0,0);">'.$row["player_id"].'</td>
+                                <td>'.$row["rank"].'</td>
+                                <td>'.$row["region"].'</td>
+                                </td>';
+                            }
+                        }
+                        else {
+                            echo "php code error";
+                        }
+                        echo "</tr>table>";
+                        $conn->close();
+                    ?>
             </table>
         </div>
     </div>
