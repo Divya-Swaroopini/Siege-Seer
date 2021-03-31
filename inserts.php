@@ -4,13 +4,13 @@
     include("connection.php");
     if($conn) {}
     else { echo "database not connected ".mysqli_error(); }
-    print_r ($POST)
-        $id = ($_POST['PlayerID']);
-        $lang = ($_POST['Language']);
-        $g_mode = ($_POST['game_mode']);
-        $reg = ($_POST['Region']);
-        $num = ($_POST['Number']);
-        $your_role = ($_POST['Role_you']);
+    print_r($_POST);
+        $id = $_POST['PlayerID'];
+        $lang = $_POST['Language'];
+        $g_mode = $_POST['game_mode'];
+        $reg = $_POST['Region'];
+        $num = $_POST['Number'];
+        $your_role = $_POST['Role_you'];
         $_SESSION['Role_them'] = ($_POST['Role_them']);
         $their_role = ($_POST['Role_them']);
     if(isset($_POST['submit'])) {
